@@ -1,14 +1,13 @@
+## Represents the ground area in the grid.
 extends Node2D
 class_name Ground
 
-## EXPORTED VARIABLES
-## Rows of ground tiles
+## Number of rows in the ground grid.
 @export var rows: int = 0
 
-## Columns of ground tiles
+## Number of columns in the ground grid.
 @export var columns: int = 0
 
-## PRIVATE FUNCTIONS
+## Emits the [signal _GroundEventBus.ground_dimensions_changed] with the initial rows and columns.
 func _ready() -> void:
-	# Emit initial dimensions of ground tiles
 	GroundEventBus.ground_dimensions_changed.emit(rows, columns)

@@ -1,20 +1,20 @@
+## Manages the tiles in the grid.
 extends Node
 class_name TileManager
 
-## VARIABLES
-## Number of ground rows
+## Number of rows in the grid.
 var rows: int = 0
 
-## Number of ground columns
+## Number of columns in the grid.
 var columns: int = 0
 
-## PRIVATE FUNCTIONS
+## Connects to the [signal _GroundEventBus.ground_dimensions_changed] signal to get actual ground dimensions.
 func _ready() -> void:
-	# Connect to ground_dimensions_changed for initial setup of the grid
 	GroundEventBus.ground_dimensions_changed.connect(_on_ground_dimensions_changed)
-	
-## EVENT BUS CONNECTION FUNCTIONS
-## Updates ground rows and columns based on received values
-func _on_ground_dimensions_changed(rows: int, columns: int):
-	self.rows = rows
-	self.columns = columns
+
+## Updates the number of rows and columns when the ground dimensions change.[br]
+## [param new_rows] New number of rows.[br]
+## [param new_columns] New number of columns.
+func _on_ground_dimensions_changed(new_rows: int, new_columns: int):
+	self.rows = new_rows
+	self.columns = new_columns
