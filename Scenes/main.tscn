@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://tq4qc6fkbn7o"]
+
+[ext_resource type="PackedScene" uid="uid://nyajxi8b00yw" path="res://Scenes/ground.tscn" id="1_jjgbg"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Ground" parent="." instance=ExtResource("1_jjgbg")]
+rows = 5
+columns = 2
