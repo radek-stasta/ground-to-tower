@@ -14,3 +14,7 @@ var column: int = 0
 func _init(tile_row: int, tile_column: int) -> void:
 	row = tile_row
 	column = tile_column
+	
+## Function to print out Tile in human readable form
+func _to_string() -> String:
+	return "(%d, %d)" % [row, column]
