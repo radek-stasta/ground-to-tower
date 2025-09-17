@@ -30,10 +30,14 @@ func _on_ground_dimensions_changed(new_rows: int, new_columns: int) -> void:
 		for column: int in range(columns):
 			grid.append(Tile.new(row, column))
 	
-## Returns Tile from the grid on specified position or null if requested Tile is out of bounds of grid.[br]
+## Returns Tile from the grid on specified position.[br]
+## Returns null if grid is not yet initialized, rows or columns are invalid (0) or requested Tile is out of bounds of grid.[br]
 ## [param row] Tile row position.[br]
 ## [param column] Tile column position.[br]
 func _get_tile(row: int, column: int) -> Tile:
+	if rows <= 0 or columns <= 0 or grid.empty():
+		push_warning("Grid is not yet initialized.")
+		return null
 	if row < 0 or row >= rows or column < 0 or column >= columns:
 		push_warning("Requested tile out of bounds: row %d, column %d" % [row, column])
 		return null
