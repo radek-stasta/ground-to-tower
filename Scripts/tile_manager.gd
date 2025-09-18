@@ -30,6 +30,9 @@ func _on_ground_dimensions_changed(new_rows: int, new_columns: int) -> void:
 		for column: int in range(columns):
 			grid.append(Tile.new(row, column))
 	
+	# Emit signal telling that grid has been generated
+	GroundEventBus.tile_grid_generated.emit(rows, columns)
+	
 ## Returns Tile from the grid on specified position.[br]
 ## Returns null if grid is not yet initialized, rows or columns are invalid (0) or requested Tile is out of bounds of grid.[br]
 ## [param row] Tile row position.[br]
