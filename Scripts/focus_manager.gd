@@ -1,5 +1,5 @@
 ## Manages currently focused [Tile] and focus changes
-extends Node
+extends TileMapLayer
 class_name FocusManager
 
 ## Currently focused [Tile] under mouse cursor (or null if no [Tile] is focused)
