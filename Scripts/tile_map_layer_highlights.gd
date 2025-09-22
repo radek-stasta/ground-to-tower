@@ -6,6 +6,9 @@ class_name TileMapLayerHighlights
 func _ready() -> void:
 	GroundEventBus.focus_changed.connect(_on_focus_changed)
 	
+## Removes focus graphics of previously focused [Tile] and adds focus graphics to newly focused [Tile].[br]
+## [param new_focused_tile] Newly focused [Tile] under mouse cursor.[br]
+## [param previous_focused_tile] Previously focused [Tile] under mouse cursor.[br]
 func _on_focus_changed(new_focused_tile: Tile, previous_focused_tile: Tile):
 	if previous_focused_tile != null:
 		erase_cell(Vector2i(previous_focused_tile.column, previous_focused_tile.row))
