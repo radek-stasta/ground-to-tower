@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nyajxi8b00yw"]
+[gd_scene load_steps=15 format=3 uid="uid://nyajxi8b00yw"]
 
 [ext_resource type="Script" uid="uid://cl1go2dagsxwo" path="res://Scripts/ground.gd" id="1_688p1"]
 [ext_resource type="Texture2D" uid="uid://d3blejbud75re" path="res://Graphics/TileMaps/Grass.png" id="2_02qk3"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://diu6inibw0pkt" path="res://Graphics/TileMaps/Grid.png" id="4_ribny"]
 [ext_resource type="Texture2D" uid="uid://c7kcnlyfi5wud" path="res://Graphics/TileMaps/TileHighlights.png" id="6_jjp1w"]
 [ext_resource type="Script" uid="uid://bu6q8r0ibatu8" path="res://Scripts/tile_map_layer_highlights.gd" id="6_rjkga"]
-[ext_resource type="PackedScene" uid="uid://cwavraflhyyhg" path="res://Scenes/focus_manager.tscn" id="9_7iiau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6h8e"]
 texture = ExtResource("2_02qk3")
@@ -53,5 +52,3 @@ tile_set = SubResource("TileSet_gxb06")
 script = ExtResource("6_rjkga")
 
 [node name="TileManager" parent="." instance=ExtResource("2_oltiy")]
-
-[node name="FocusManager" parent="." instance=ExtResource("9_7iiau")]
