@@ -2,14 +2,14 @@
 extends TileMapLayer
 class_name TileMapLayerHighlights
 
-## Enum containing possible types of highlights. Corresponds to graphics position in TileSet.[br][br]
-## [member HighlightType.FOCUSED] currently focused [Tile] under mouse cursor.[br]
-## [member HighlightType.SELECTED] selected [Tile].[br]
-## [member HighlightType.ADDING] [Tile] that will be added to selection.[br]
-## [member HighlightType.REMOVING] [Tile] that will be removed from selection.
-enum HighlightType {
-	FOCUSED = 0,
-	SELECTED = 1,
-	ADDING = 2,
-	REMOVING = 3
-}
+## Connects to the [signal _GroundEventBus.focus_changed] signal to update new and previous focused [Tile] graphics
+func _ready() -> void:
+	GroundEventBus.focus_changed.connect(_on_focus_changed)
+	
+func _on_focus_changed(new_focused_tile: Tile, previous_focused_tile: Tile):
+	if previous_focused_tile != null:
+		erase_cell(Vector2i(previous_focused_tile.column, previous_focused_tile.row))
+	
+	if new_focused_tile != null:
+		set_cell(Vector2i(new_focused_tile.column, new_focused_tile.row), 0, Vector2i(Tile.HighlightState.FOCUSED, 0))
+	

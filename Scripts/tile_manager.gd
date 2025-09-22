@@ -37,7 +37,7 @@ func _on_ground_dimensions_changed(new_rows: int, new_columns: int) -> void:
 ## Returns null if grid is not yet initialized, rows or columns are invalid (0) or requested Tile is out of bounds of grid.[br]
 ## [param row] Tile row position.[br]
 ## [param column] Tile column position.[br]
-func _get_tile(row: int, column: int) -> Tile:
+func get_tile(row: int, column: int) -> Tile:
 	if rows <= 0 or columns <= 0 or grid.is_empty():
 		push_warning("Grid is not yet initialized.")
 		return null
