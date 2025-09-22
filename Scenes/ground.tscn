@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://nyajxi8b00yw"]
+[gd_scene load_steps=11 format=3 uid="uid://nyajxi8b00yw"]
 
 [ext_resource type="Script" uid="uid://cl1go2dagsxwo" path="res://Scripts/ground.gd" id="1_688p1"]
 [ext_resource type="Texture2D" uid="uid://d3blejbud75re" path="res://Graphics/TileMaps/Grass.png" id="2_02qk3"]
 [ext_resource type="PackedScene" uid="uid://o3tfpuo8dqvs" path="res://Scenes/tile_manager.tscn" id="2_oltiy"]
 [ext_resource type="Script" uid="uid://duvn1wqjoya0j" path="res://Scripts/tile_map_layer_grass.gd" id="3_s6h8e"]
+[ext_resource type="Script" uid="uid://kkll4jgw3j3a" path="res://Scripts/tile_map_layer_grid.gd" id="4_kv0ry"]
+[ext_resource type="Texture2D" uid="uid://diu6inibw0pkt" path="res://Graphics/TileMaps/Grid.png" id="4_ribny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6h8e"]
 texture = ExtResource("2_02qk3")
@@ -14,11 +16,22 @@ texture = ExtResource("2_02qk3")
 [sub_resource type="TileSet" id="TileSet_kv0ry"]
 sources/0 = SubResource("TileSetAtlasSource_s6h8e")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rjkga"]
+texture = ExtResource("4_ribny")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jjp1w"]
+sources/0 = SubResource("TileSetAtlasSource_rjkga")
+
 [node name="Ground" type="Node2D"]
 script = ExtResource("1_688p1")
 
 [node name="TileMapLayerGrass" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_kv0ry")
 script = ExtResource("3_s6h8e")
+
+[node name="TileMapLayerGrid" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_jjp1w")
+script = ExtResource("4_kv0ry")
 
 [node name="TileManager" parent="." instance=ExtResource("2_oltiy")]
