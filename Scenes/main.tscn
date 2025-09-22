@@ -5,5 +5,5 @@
 [node name="Main" type="Node2D"]
 
 [node name="Ground" parent="." instance=ExtResource("1_jjgbg")]
-rows = 5
-columns = 2
+rows = 20
+columns = 20

@@ -18,3 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 GroundEventBus="*res://Scripts/ground_event_bus.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[rendering]
+
+2d/snap/snap_2d_transforms_to_pixel=true
