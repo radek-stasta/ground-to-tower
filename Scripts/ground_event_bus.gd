@@ -18,5 +18,6 @@ signal ground_dimensions_changed(rows: int, columns: int)
 ## [TileManager]: When ground grid has been generated.[br][br]
 ## [b][u]Subscribers:[/u][/b][br]
 ## [TileMapLayerGrass]: Updates graphics of newly generated grid[br]
-## [TileMapLayerGrid]: Updates graphics of newly generated grid
+## [TileMapLayerGrid]: Updates graphics of newly generated grid[br]
+## [TileMapLayerHighlights]: Updates graphics of newly generated grid[br]
 signal tile_grid_generated(rows: int, columns: int)
