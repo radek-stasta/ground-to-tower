@@ -21,4 +21,3 @@ func _on_tile_grid_generated(rows: int, columns: int) -> void:
 			# Get random tile from tile set and set grid tile graphics
 			var random_tile: int = randi() % tile_set_length
 			set_cell(Vector2i(column, row), 0, Vector2i(random_tile, 0))
-			

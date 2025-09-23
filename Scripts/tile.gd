@@ -1,13 +1,13 @@
 ## Represents a tile in the grid.
-extends Node
+extends Resource
 class_name Tile
 
-## Enum containing possible states of highlights. Corresponds to graphics position in [TileMapLayerHighlight] TileSet.[br][br]
-## [member HighlightType.NONE] No highlight, no TileSet graphic.[br]
-## [member HighlightType.FOCUSED] Currently focused tile under mouse cursor.[br]
-## [member HighlightType.SELECTED] Selected tile.[br]
-## [member HighlightType.ADDED] Tile will be added to selection.[br]
-## [member HighlightType.REMOVED] Tile will be removed from selection.
+## Enum containing possible states of highlights. Corresponds to graphics position in [TileMapLayerHighlights] TileSet.[br][br]
+## [member HighlightState.NONE] No highlight, no TileSet graphic.[br]
+## [member HighlightState.FOCUSED] Currently focused tile under mouse cursor.[br]
+## [member HighlightState.SELECTED] Selected tile.[br]
+## [member HighlightState.ADDED] Tile will be added to selection.[br]
+## [member HighlightState.REMOVED] Tile will be removed from selection.
 enum HighlightState {
 	NONE = -1,
 	FOCUSED = 0,
