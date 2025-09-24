@@ -9,6 +9,7 @@ class_name _GroundEventBus
 ## [Ground]: When ground dimensions are initialized.[br][br]
 ## [b][u]Subscribers:[/u][/b][br]
 ## [TileManager]: Updates its [member TileManager.rows] and [member TileManager.columns] and generates new [member TileManager.grid].[br][br]
+@warning_ignore("UNUSED_SIGNAL")
 signal ground_dimensions_changed(rows: int, columns: int)
 
 ## Emitted when ground tile grid has been generated.[br]
@@ -19,6 +20,7 @@ signal ground_dimensions_changed(rows: int, columns: int)
 ## [b][u]Subscribers:[/u][/b][br]
 ## [TileMapLayerGrass]: Updates graphics of newly generated grid.[br]
 ## [TileMapLayerGrid]: Updates graphics of newly generated grid.
+@warning_ignore("UNUSED_SIGNAL")
 signal tile_grid_generated(rows: int, columns: int)
 
 ## Emitted when focused [Tile] under mouse cursor changes
@@ -28,4 +30,5 @@ signal tile_grid_generated(rows: int, columns: int)
 ## [FocusManager]: When focused [Tile] under mouse cursor changes.[br][br]
 ## [b][u]Subscribers:[/u][/b][br]
 ## [TileMapLayerHighlights]: Updates graphics of newly and previously focused [Tile][br]
+@warning_ignore("UNUSED_SIGNAL")
 signal focus_changed(new_focused_tile: Tile, previous_focused_tile: Tile)
