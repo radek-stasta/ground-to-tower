@@ -2,14 +2,26 @@
 extends Node2D
 class_name FocusManager
 
+## Path to the [TileManager] node.
+@export var tile_manager_path: NodePath
+
+## Path to the [TileMapLayerHighlights] node.
+@export var tile_map_layer_highlights_path: NodePath
+
 ## [TileManager] for getting [Tile] object based on mouse position.
-@onready var tile_manager: TileManager = $"../../TileManager"
+@onready var tile_manager: TileManager = get_node(tile_manager_path)
 
 ## [TileMapLayerHighlights](parent) for [TileMapLayer] functions.
-@onready var tile_map_layer_highlights: TileMapLayerHighlights = $".."
+@onready var tile_map_layer_highlights: TileMapLayerHighlights = get_node(tile_map_layer_highlights_path)
 
 ## Currently focused [Tile] under mouse cursor (or null if no [Tile] is focused).
 var focused_tile: Tile = null
+
+## Called when the node enters the scene tree.[br]
+## Checks that exported variables are set.
+func _ready() -> void:
+	assert(!tile_manager_path.is_empty(), "tile_manager_path is not set.")
+	assert(!tile_map_layer_highlights_path.is_empty(), "tile_map_layer_highlights_path is not set.")
 
 ## Handles input events for the focus manager and resolves focus on mouse motion.
 ## [param event] Input event to handle.
