@@ -20,8 +20,8 @@ var focused_tile: Tile = null
 ## Called when the node enters the scene tree.[br]
 ## Checks that exported variables are set.
 func _ready() -> void:
-	assert(!tile_manager_path.is_empty(), "tile_manager_path is not set.")
-	assert(!tile_map_layer_highlights_path.is_empty(), "tile_map_layer_highlights_path is not set.")
+	assert(not tile_manager_path.is_empty(), "tile_manager_path is not set.")
+	assert(not tile_map_layer_highlights_path.is_empty(), "tile_map_layer_highlights_path is not set.")
 
 ## Handles input events for the focus manager and resolves focus on mouse motion.
 ## [param event] Input event to handle.
