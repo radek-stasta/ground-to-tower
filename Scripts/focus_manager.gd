@@ -27,7 +27,6 @@ func _resolve_focus() -> void:
 	  or tile_under_cursor_position.y < 0 or tile_under_cursor_position.y >= tile_manager.rows:
 		if focused_tile != null:
 			GroundEventBus.focus_changed.emit(null, focused_tile)
-			focused_tile.highlight_state = Tile.HighlightState.NONE
 			focused_tile = null
 		return
 
@@ -35,12 +34,6 @@ func _resolve_focus() -> void:
 	
 	# Only change focus if the tiles are different
 	if tile_under_cursor != focused_tile:
-		var previous_tile = focused_tile
-		if previous_tile != null:
-			previous_tile.highlight_state = Tile.HighlightState.NONE
-		
-		focused_tile = tile_under_cursor
-		if focused_tile != null:
-			focused_tile.highlight_state = Tile.HighlightState.FOCUSED
-		
+		var previous_tile = focused_tile		
+		focused_tile = tile_under_cursor		
 		GroundEventBus.focus_changed.emit(focused_tile, previous_tile)
