@@ -60,8 +60,6 @@ tile_map_layer_highlights_path = NodePath("..")
 
 [node name="FocusManager" type="Node2D" parent="TileMapLayerHighlights"]
 script = ExtResource("8_7iiau")
-tile_manager_path = NodePath("../../TileManager")
-tile_map_layer_highlights_path = NodePath("..")
 
 [node name="TileManager" type="Node" parent="."]
 script = ExtResource("8_jjp1w")

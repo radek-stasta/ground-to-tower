@@ -11,6 +11,24 @@ class_name _GroundEventBus
 @warning_ignore("UNUSED_SIGNAL")
 signal mouse_tile_event_move(tile: Tile)
 
+## Emitted when action mouse button is pressed and contains current [Tile] under cursor (or null if not within grid).[br]
+## [param tile] [Tile] currently under mouse cursor.[br][br]
+## [b][u]Emitters:[/u][/b][br]
+## [MouseTileEvents]: When action mouse button is pressed.[br][br]
+## [b][u]Subscribers:[/u][/b][br]
+## [FocusManager]: Disables focus manager and unsets focused [Tile].
+@warning_ignore("UNUSED_SIGNAL")
+signal mouse_tile_event_action_pressed(tile: Tile)
+
+## Emitted when action mouse button is released and contains current [Tile] under cursor (or null if not within grid).[br]
+## [param tile] [Tile] currently under mouse cursor.[br][br]
+## [b][u]Emitters:[/u][/b][br]
+## [MouseTileEvents]: When action mouse button is released.[br][br]
+## [b][u]Subscribers:[/u][/b][br]
+## [FocusManager]: Enables focus manager and sets focused [Tile] under mouse cursor.
+@warning_ignore("UNUSED_SIGNAL")
+signal mouse_tile_event_action_released(tile: Tile)
+
 ## Emitted when the ground dimensions change.[br]
 ## [param rows] New number of rows.[br]
 ## [param columns] New number of columns.[br][br]

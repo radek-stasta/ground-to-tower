@@ -25,13 +25,19 @@ func _ready() -> void:
 ## [param event] Input event to handle.
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var tile_under_cursor_position: Vector2i = tile_map_layer_highlights.local_to_map(tile_map_layer_highlights.get_local_mouse_position())
+		GroundEventBus.mouse_tile_event_move.emit(_get_tile_under_cursor())
+	if event is InputEventMouseButton:
+		if event.is_action_pressed("action"):
+			GroundEventBus.mouse_tile_event_action_pressed.emit(_get_tile_under_cursor())
+		if event.is_action_released("action"):
+			GroundEventBus.mouse_tile_event_action_released.emit(_get_tile_under_cursor())
 
-		# If position is out of bounds, set tile_under_cursor to null and emmit change signal if needed
-		if tile_under_cursor_position.x < 0 or tile_under_cursor_position.x >= tile_manager.columns \
-		  or tile_under_cursor_position.y < 0 or tile_under_cursor_position.y >= tile_manager.rows:
-			GroundEventBus.mouse_tile_event_move.emit(null)
-			return
+func _get_tile_under_cursor() -> Tile:
+	var tile_under_cursor_position: Vector2i = tile_map_layer_highlights.local_to_map(tile_map_layer_highlights.get_local_mouse_position())
 
-		var tile_under_cursor: Tile = tile_manager.get_tile(tile_under_cursor_position.y, tile_under_cursor_position.x)
-		GroundEventBus.mouse_tile_event_move.emit(tile_under_cursor)
+	# If position is out of bounds, set tile_under_cursor to null and emmit change signal if needed
+	if tile_under_cursor_position.x < 0 or tile_under_cursor_position.x >= tile_manager.columns \
+	  or tile_under_cursor_position.y < 0 or tile_under_cursor_position.y >= tile_manager.rows:
+		return null
+
+	return tile_manager.get_tile(tile_under_cursor_position.y, tile_under_cursor_position.x)
