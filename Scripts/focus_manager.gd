@@ -2,50 +2,18 @@
 extends Node2D
 class_name FocusManager
 
-## Path to the [TileManager] node.
-@export var tile_manager_path: NodePath
-
-## Path to the [TileMapLayerHighlights] node.
-@export var tile_map_layer_highlights_path: NodePath
-
-## [TileManager] for getting [Tile] object based on mouse position.
-@onready var tile_manager: TileManager = get_node(tile_manager_path)
-
-## [TileMapLayerHighlights](parent) for [TileMapLayer] functions.
-@onready var tile_map_layer_highlights: TileMapLayerHighlights = get_node(tile_map_layer_highlights_path)
-
 ## Currently focused [Tile] under mouse cursor (or null if no [Tile] is focused).
 var focused_tile: Tile = null
 
-## Called when the node enters the scene tree.[br]
-## Checks that exported variables are set.
+## Subscribes to [GroundEventBus] signals.
 func _ready() -> void:
-	assert(not tile_manager_path.is_empty(), "tile_manager_path is not set.")
-	assert(not tile_map_layer_highlights_path.is_empty(), "tile_map_layer_highlights_path is not set.")
+	GroundEventBus.mouse_tile_event_move.connect(_on_mouse_tile_event_move)
 
-## Handles input events for the focus manager and resolves focus on mouse motion.
-## [param event] Input event to handle.
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		_resolve_focus()
+## Resolves what [Tile] under mouse cursor is currently focused.[br]
+## Emits [signal _GroundEventBus.focus_changed] when [Tile] under mouse cursor changes.
+func _on_mouse_tile_event_move(tile: Tile) -> void:
+	var previous_tile = focused_tile
+	focused_tile = tile
 
-## Resolves what [Tile] under mouse cursor is currently selected.[br]
-## Emits [signal _GroundEventBus.focus_changed] when [Tile] under mouse cursor changes or unfocuses current tile if mouse is out of bounds.
-func _resolve_focus() -> void:
-	var tile_under_cursor_position: Vector2i = tile_map_layer_highlights.local_to_map(tile_map_layer_highlights.get_local_mouse_position())
-
-	# If position is out of bounds, unfocus current tile (if any) and return
-	if tile_under_cursor_position.x < 0 or tile_under_cursor_position.x >= tile_manager.columns \
-	  or tile_under_cursor_position.y < 0 or tile_under_cursor_position.y >= tile_manager.rows:
-		if focused_tile != null:
-			GroundEventBus.focus_changed.emit(null, focused_tile)
-			focused_tile = null
-		return
-
-	var tile_under_cursor: Tile = tile_manager.get_tile(tile_under_cursor_position.y, tile_under_cursor_position.x)
-	
-	# Only change focus if the tiles are different
-	if tile_under_cursor != focused_tile:
-		var previous_tile = focused_tile		
-		focused_tile = tile_under_cursor		
+	if previous_tile != focused_tile:
 		GroundEventBus.focus_changed.emit(focused_tile, previous_tile)

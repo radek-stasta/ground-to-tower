@@ -2,6 +2,15 @@
 extends Node
 class_name _GroundEventBus
 
+## Emitted when mouse cursor moves and contains current [Tile] under cursor (or null if no [Tile] is focused).[br]
+## [param tile] [Tile] currently under mouse cursor.[br][br]
+## [b][u]Emitters:[/u][/b][br]  
+## [MouseTileEvents]: When mouse cursor moves.[br][br]
+## [b][u]Subscribers:[/u][/b][br]
+## [FocusManager]: Gets currently focused [Tile] under mouse cursor and signals its changes.
+@warning_ignore("UNUSED_SIGNAL")
+signal mouse_tile_event_move(tile: Tile)
+
 ## Emitted when the ground dimensions change.[br]
 ## [param rows] New number of rows.[br]
 ## [param columns] New number of columns.[br][br]

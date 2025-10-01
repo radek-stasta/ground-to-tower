@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nyajxi8b00yw"]
+[gd_scene load_steps=17 format=3 uid="uid://nyajxi8b00yw"]
 
 [ext_resource type="Script" uid="uid://cl1go2dagsxwo" path="res://Scripts/ground.gd" id="1_688p1"]
 [ext_resource type="Texture2D" uid="uid://d3blejbud75re" path="res://Graphics/TileMaps/Grass.png" id="2_02qk3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c7kcnlyfi5wud" path="res://Graphics/TileMaps/TileHighlights.png" id="6_jjp1w"]
 [ext_resource type="Script" uid="uid://bu6q8r0ibatu8" path="res://Scripts/tile_map_layer_highlights.gd" id="6_rjkga"]
 [ext_resource type="Script" uid="uid://114vgbed367k" path="res://Scripts/focus_manager.gd" id="8_7iiau"]
+[ext_resource type="Script" uid="uid://b6e5w85x7tmi7" path="res://Scripts/mouse_tile_events.gd" id="8_gxb06"]
 [ext_resource type="Script" uid="uid://c615kuw5v10kl" path="res://Scripts/tile_manager.gd" id="8_jjp1w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s6h8e"]
@@ -51,6 +52,11 @@ script = ExtResource("4_kv0ry")
 [node name="TileMapLayerHighlights" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_gxb06")
 script = ExtResource("6_rjkga")
+
+[node name="MouseTileEvents" type="Node2D" parent="TileMapLayerHighlights"]
+script = ExtResource("8_gxb06")
+tile_manager_path = NodePath("../../TileManager")
+tile_map_layer_highlights_path = NodePath("..")
 
 [node name="FocusManager" type="Node2D" parent="TileMapLayerHighlights"]
 script = ExtResource("8_7iiau")
